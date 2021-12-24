@@ -1,0 +1,183 @@
+Node {
+  type: 'VariableDeclaration',
+  start: 0,
+  end: 12,
+  loc: SourceLocation {
+    start: Position { line: 1, column: 0 },
+    end: Position { line: 1, column: 12 },
+    filename: undefined,
+    identifierName: undefined
+  },
+  declarations: [
+    Node {
+      type: 'VariableDeclarator',
+      start: 6,
+      end: 11,
+      loc: [SourceLocation],
+      id: [Node],
+      init: [Node]
+    }
+  ],
+  kind: 'const'
+}
+Node {
+  type: 'FunctionDeclaration',
+  start: 16,
+  end: 31,
+  loc: SourceLocation {
+    start: Position { line: 3, column: 0 },
+    end: Position { line: 3, column: 15 },
+    filename: undefined,
+    identifierName: undefined
+  },
+  id: Node {
+    type: 'Identifier',
+    start: 25,
+    end: 26,
+    loc: SourceLocation {
+      start: [Position],
+      end: [Position],
+      filename: undefined,
+      identifierName: 'b'
+    },
+    name: 'b'
+  },
+  generator: false,
+  async: false,
+  params: [],
+  body: Node {
+    type: 'BlockStatement',
+    start: 29,
+    end: 31,
+    loc: SourceLocation {
+      start: [Position],
+      end: [Position],
+      filename: undefined,
+      identifierName: undefined
+    },
+    body: [],
+    directives: []
+  }
+}
+Node {
+  type: 'VariableDeclaration',
+  start: 35,
+  end: 54,
+  loc: SourceLocation {
+    start: Position { line: 5, column: 0 },
+    end: Position { line: 5, column: 19 },
+    filename: undefined,
+    identifierName: undefined
+  },
+  declarations: [
+    Node {
+      type: 'VariableDeclarator',
+      start: 41,
+      end: 53,
+      loc: [SourceLocation],
+      id: [Node],
+      init: [Node]
+    }
+  ],
+  kind: 'const'
+}
+Node {
+  type: 'ArrowFunctionExpression',
+  start: 45,
+  end: 53,
+  loc: SourceLocation {
+    start: Position { line: 5, column: 10 },
+    end: Position { line: 5, column: 18 },
+    filename: undefined,
+    identifierName: undefined
+  },
+  id: null,
+  generator: false,
+  async: false,
+  params: [],
+  body: Node {
+    type: 'BlockStatement',
+    start: 51,
+    end: 53,
+    loc: SourceLocation {
+      start: [Position],
+      end: [Position],
+      filename: undefined,
+      identifierName: undefined
+    },
+    body: [],
+    directives: []
+  }
+}
+Node {
+  type: 'ForOfStatement',
+  start: 58,
+  end: 89,
+  loc: SourceLocation {
+    start: Position { line: 7, column: 0 },
+    end: Position { line: 8, column: 1 },
+    filename: undefined,
+    identifierName: undefined
+  },
+  await: false,
+  left: Node {
+    type: 'VariableDeclaration',
+    start: 63,
+    end: 73,
+    loc: SourceLocation {
+      start: [Position],
+      end: [Position],
+      filename: undefined,
+      identifierName: undefined
+    },
+    declarations: [ [Node] ],
+    kind: 'const'
+  },
+  right: Node {
+    type: 'ArrayExpression',
+    start: 77,
+    end: 83,
+    loc: SourceLocation {
+      start: [Position],
+      end: [Position],
+      filename: undefined,
+      identifierName: undefined
+    },
+    elements: [ [Node], [Node] ]
+  },
+  body: Node {
+    type: 'BlockStatement',
+    start: 85,
+    end: 89,
+    loc: SourceLocation {
+      start: [Position],
+      end: [Position],
+      filename: undefined,
+      identifierName: undefined
+    },
+    body: [],
+    directives: []
+  }
+}
+Node {
+  type: 'VariableDeclaration',
+  start: 63,
+  end: 73,
+  loc: SourceLocation {
+    start: Position { line: 7, column: 5 },
+    end: Position { line: 7, column: 15 },
+    filename: undefined,
+    identifierName: undefined
+  },
+  declarations: [
+    Node {
+      type: 'VariableDeclarator',
+      start: 69,
+      end: 73,
+      loc: [SourceLocation],
+      id: [Node],
+      init: null
+    }
+  ],
+  kind: 'const'
+}
