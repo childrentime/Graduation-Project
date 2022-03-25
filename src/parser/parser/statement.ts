@@ -13,15 +13,6 @@ export default class StatementParser extends ExpressionParser {
   parseProgram(program: N.Program, end: TokenType = tt.eof): N.Program {
     program.interpreter = this.parseInterpreterDirective();
     this.parseBlockBody(program, true, true, end);
-    if (
-      this.inModule &&
-      !this.options.allowUndeclaredExports &&
-      this.scope.undefinedExports.size > 0
-    ) {
-      for (const [localName, at] of Array.from(this.scope.undefinedExports)) {
-        this.raise(Errors.ModuleExportUndefined, { at, localName });
-      }
-    }
     return this.finishNode<N.Program>(program, "Program");
   }
 
@@ -30,7 +21,7 @@ export default class StatementParser extends ExpressionParser {
       return null;
     }
 
-    const node = this.startNode();
+    const node = this.startNode() as N.InterpreterDirective;
     node.value = this.state.value;
     this.next();
     return this.finishNode(node, "InterpreterDirective");

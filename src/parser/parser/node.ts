@@ -19,15 +19,15 @@ class Node implements NodeBase {
   public extra: { [key: string]: any };
 }
 export class NodeUtils extends UtilParser {
-  protected startNode(): NodeType {
+  protected startNode<T extends NodeType>(): T {
     return new Node(this.state.start, this.state.startLoc);
   }
-  finishNode(node: NodeType, type: string): NodeType {
+  finishNode<T extends NodeType>(node: T, type: string): T {
     return this.finishNodeAt(node, type, this.state.lastTokEndLoc);
   }
   // Finish node at given position
 
-  finishNodeAt(node: NodeType, type: string, endLoc: Position): NodeType {
+  finishNodeAt<T extends NodeType>(node: T, type: string, endLoc: Position): T {
     node.type = type;
     node.end = endLoc.index;
     node.loc.end = endLoc;
