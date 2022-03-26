@@ -1,5 +1,5 @@
 import UtilParser from "./util";
-import { Comment, Node as NodeType, NodeBase } from "../types";
+import { Comment, NodeBase } from "../types";
 import { Position, SourceLocation } from "../util/location";
 
 class Node implements NodeBase {
@@ -19,15 +19,20 @@ class Node implements NodeBase {
   public extra: { [key: string]: any };
 }
 export class NodeUtils extends UtilParser {
-  protected startNode<T extends NodeType>(): T {
+  protected startNode<T extends NodeBase>(): T {
+    // @ts-ignore
     return new Node(this.state.start, this.state.startLoc);
   }
-  finishNode<T extends NodeType>(node: T, type: string): T {
+  finishNode<T extends NodeBase & { type: string }>(node: T, type: string): T {
     return this.finishNodeAt(node, type, this.state.lastTokEndLoc);
   }
   // Finish node at given position
 
-  finishNodeAt<T extends NodeType>(node: T, type: string, endLoc: Position): T {
+  finishNodeAt<T extends NodeBase & { type: string }>(
+    node: T,
+    type: string,
+    endLoc: Position
+  ): T {
     node.type = type;
     node.end = endLoc.index;
     node.loc.end = endLoc;

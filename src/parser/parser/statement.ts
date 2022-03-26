@@ -20,10 +20,12 @@ export default class StatementParser extends ExpressionParser {
     if (!this.match(tt.interpreterDirective)) {
       return null;
     }
-
     const node = this.startNode() as N.InterpreterDirective;
     node.value = this.state.value;
     this.next();
-    return this.finishNode(node, "InterpreterDirective");
+    return this.finishNode<N.InterpreterDirective>(
+      node,
+      "InterpreterDirective"
+    );
   }
 }
