@@ -20,6 +20,16 @@ import {
   skipWhiteSpace,
 } from "../util/whitespace";
 import { isIdentifierStart, isIdentifierChar } from "../util/identifier";
+
+const VALID_REGEX_FLAGS: Set<Number> = new Set([
+  charCodes.lowercaseG,
+  charCodes.lowercaseM,
+  charCodes.lowercaseS,
+  charCodes.lowercaseI,
+  charCodes.lowercaseY,
+  charCodes.lowercaseU,
+  charCodes.lowercaseD,
+]);
 export class Token {
   constructor(state: State) {
     this.type = state.type;
@@ -1028,5 +1038,27 @@ export default class Tokenizer extends CommentsParser {
       return;
     }
     this.finishOp(code === charCodes.equalsTo ? tt.eq : tt.bang, 1);
+  }
+
+  nextTokenStart(): number {
+    return this.nextTokenStartSince(this.state.pos);
+  }
+
+  nextTokenStartSince(pos: number): number {
+    skipWhiteSpace.lastIndex = pos;
+    return skipWhiteSpace.test(this.input) ? skipWhiteSpace.lastIndex : pos;
+  }
+
+  eat(type: TokenType): boolean {
+    if (this.match(type)) {
+      this.next();
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  replaceToken(type: TokenType): void {
+    this.state.type = type;
   }
 }

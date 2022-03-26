@@ -17,6 +17,23 @@ export type CommentLine = CommentBase & {
   type: "CommentLine";
 };
 export type Comment = CommentBlock | CommentLine;
+
+export type PatternBase = NodeBase & {
+  // Flow/TypeScript only:
+  typeAnnotation?: TypeAnnotationBase;
+};
+
+export type Identifier = PatternBase & {
+  type: "Identifier";
+  name: string;
+
+  // @deprecated
+  __clone(): Identifier;
+
+  // TypeScript only. Used in case of an optional parameter.
+  optional?: true;
+};
+
 export interface NodeBase {
   start: number;
   end: number;
@@ -28,9 +45,37 @@ export interface NodeBase {
 
   extra: { [key: string]: any };
 }
+export type TypeAnnotationBase = NodeBase & {
+  typeAnnotation: Node;
+};
 export type Node = NodeBase & { [key: string]: any };
 export type Expression = Node;
 export type Statement = Node;
+
+export type BlockStatement = NodeBase & {
+  type: "BlockStatement";
+  body: Array<Statement>;
+  directives: Array<Directive>;
+};
+
+export type DoWhileStatement = NodeBase & {
+  type: "DoWhileStatement";
+  body: Statement;
+  test: Expression;
+};
+export type DebuggerStatement = NodeBase & {
+  type: "DebuggerStatement";
+};
+
+export type BreakStatement = NodeBase & {
+  type: "BreakStatement";
+  label: Identifier;
+};
+
+export type ContinueStatement = NodeBase & {
+  type: "ContinueStatement";
+  label: Identifier;
+};
 
 export type StringLiteral = NodeBase & {
   type: "StringLiteral";
@@ -75,3 +120,53 @@ export type CommentWhitespace = {
   trailingNode: Node | null;
   containerNode: Node | null;
 };
+
+export type BlockStatementLike = Program | BlockStatement;
+
+export type PrivateName = NodeBase & {
+  type: "PrivateName";
+  id: Identifier;
+};
+
+export type NumericLiteral = NodeBase & {
+  type: "NumericLiteral";
+  value: number;
+};
+
+export type BigIntLiteral = NodeBase & {
+  type: "BigIntLiteral";
+  value: number;
+};
+
+export type DecimalLiteral = NodeBase & {
+  type: "DecimalLiteral";
+  value: number;
+};
+
+export type NullLiteral = NodeBase & {
+  type: "NullLiteral";
+};
+
+export type BooleanLiteral = NodeBase & {
+  type: "BooleanLiteral";
+  value: boolean;
+};
+
+export type Super = NodeBase & { type: "Super" };
+export type ThisExpression = NodeBase & { type: "ThisExpression" };
+export type UnaryExpression = NodeBase & {
+  type: "UnaryExpression";
+  operator: UnaryOperator;
+  prefix: boolean;
+  argument: Expression;
+};
+
+export type UnaryOperator =
+  | "-"
+  | "+"
+  | "!"
+  | "~"
+  | "typeof"
+  | "void"
+  | "delete"
+  | "throw";
